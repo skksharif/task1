@@ -2,7 +2,7 @@
   <div class="container">
     <h2>Adults</h2>
 
-    <center v-if="loading"><p>Loading adlts...</p></center>
+    <center v-if="loading"><p>Loading adults...</p></center>
 
     <table v-else-if="users.length" class="responsive-table">
       <thead>

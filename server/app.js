@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
 const userRoutes = require("./routes/userRoutes");
+
 const cors = require("cors");
 app.use(cors());
-require("./queue/worker"); // start the worker
+
+// start the worker
+require("./queue/worker"); 
 
 app.use(express.json());
 app.use("/api/users", userRoutes);
