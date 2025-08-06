@@ -1,18 +1,17 @@
-const express = require("express");
+require('dotenv').config();
+const express = require('express');
 const app = express();
-const userRoutes = require("./routes/userRoutes");
-
-const cors = require("cors");
+const cors = require('cors');
 app.use(cors());
 
-// start the worker
-require("./queue/worker"); 
+
+const userRoutes = require('./routes/userRoutes');
+const db = require('./db');
 
 app.use(express.json());
-app.use("/api/users", userRoutes);
+app.use('/api/users', userRoutes);
 
-
-const PORT = 5500;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`API server running on - http://localhost:${PORT}`);
 });
