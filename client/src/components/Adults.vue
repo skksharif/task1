@@ -73,8 +73,6 @@ h2 {
   text-align: left;
 }
 
-
-
 .responsive-table th {
   background-color: #f2f2f2;
   font-weight: bold;
