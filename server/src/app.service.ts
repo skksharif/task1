@@ -14,17 +14,18 @@ export class AppService {
     private childRepo: Repository<Children>,
   ) {}
 
-  async addUser(userData: CreateUserDto) {
-    const { name, age } = userData;
+  // async addUser(userData: CreateUserDto) {
+  //   const { name, age } = userData;
 
-    if (age >= 18) {
-      await this.adultRepo.save({ name, age });
-      return { message: `${name} added to adults table` };
-    } else {
-      await this.childRepo.save({ name, age });
-      return { message: `${name} added to children table` };
-    }
-  }
+  //   if (age >= 18) {
+  //     await this.adultRepo.save({ name, age });
+  //     return { message: `${name} added to adults table` };
+  //   } else {
+  //     await this.childRepo.save({ name, age });
+  //     return { message: `${name} added to children table` };
+  //   }
+  // }
+  
   async getUser(userType: string) {
     if (userType === 'adults') 
         return this.adultRepo.find();

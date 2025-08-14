@@ -1,17 +1,25 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import "dotenv/config";
-
-
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-    app.enableCors({
-    origin: 'http://localhost:8080', // Allowing requests from this origin
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  });
-  await app.listen(process.env.PORT ?? 3000);
-}
 
+  // Enable CORS for all routes
+  app.enableCors();
+
+
+  // 1.Connect Worker as MQTT microservice
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.MQTT,
+    options: {
+      url: 'mqtt://localhost:1883',
+    },
+  });
+
+  // 2.Connect Publisher as MQTT microservice
+  await app.startAllMicroservices();
+  await app.listen(5500);
+
+}
 bootstrap();

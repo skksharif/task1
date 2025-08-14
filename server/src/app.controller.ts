@@ -11,8 +11,9 @@ export class AppController {
     return this.appService.getUser(userType);
   }
 
-  @Post('/adduser')
-  addUser(@Body() userData: CreateUserDto) {
-    return this.appService.addUser(userData);
-  }
+  // @Post('/adduser')
+  // addUser(@Body() userData: CreateUserDto) {
+  //   return this.appService.addUser(userData);
+  // }
+  
 }
